@@ -3,13 +3,13 @@ import styled from 'styled-components';
 
 const Fn = styled.div`
   display: none;
-  padding-bottom: 10px;
   border-bottom: 1px solid rgba(112, 112, 112, 255);
   margin-right: 10px;
 `;
 
 const Title = styled.div`
   flex: 1;
+  text-align: left;
   text-decoration: ${props => !props.e.done ? "none" : "line-through"};
 `;
 
@@ -18,8 +18,14 @@ const Time = styled.div`
 `;
 
 const Container = styled.div`
-  width: 80vw;
   display: flex;
+  align-items: center;
+  width: 80vw;
+  height: 30px;
+  margin-bottom: 10px;
+  padding: 5px 20px;
+  box-sizing: border-box;
+
   &:hover {
     background-color: rgba(0, 0, 0, 0.2)
   }
