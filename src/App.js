@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "./css/app.css";
+import Navigation from "./component/Navigation";
+import Add from "./component/Add";
+import Info from "./component/Info";
+import TodoContainer from "./component/TodoContainer";
+import Container from "./component/Container";
+import { useEffect, useState } from "react";
 
-function App() {
+export default function App() {
+  const [todo, setTodo] = useState([]);
+  const [showDone, setShowDone] = useState(false);
+  const [count, setCount] = useState(null);
+
+  useEffect(() => {
+    let newCount = 0;
+    todo.forEach((e) => {
+      if (!e.done) {
+        newCount++;
+      }
+    })
+    setCount(newCount);
+  }, [todo])
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Container>
+        <Navigation />
+        <Add todo={todo} setTodo={setTodo} />
+        <Info setShowDone={setShowDone} showDone={showDone} count={count} />
+        <TodoContainer todo={todo} showDone={showDone} setTodo={setTodo} />
+      </Container>
     </div>
   );
 }
-
-export default App;
