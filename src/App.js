@@ -1,15 +1,30 @@
-import "./css/app.css";
+import { useEffect, useState } from "react";
 import Navigation from "./component/Navigation";
 import Add from "./component/Add";
 import Info from "./component/Info";
-import TodoContainer from "./component/TodoContainer";
-import Container from "./component/Container";
-import { useEffect, useState } from "react";
+import TodoContainer from "./container/TodoContainer";
+import Container from "./container/Container";
 
-export default function App() {
+const App = () => {
   const [todo, setTodo] = useState([]);
+  const [tempTodo, setTempTodo] = useState([]);
   const [showDone, setShowDone] = useState(false);
   const [count, setCount] = useState(null);
+
+  useEffect(() => {
+    if (todo) {
+      setTempTodo(todo.filter(e => !e.done));
+    }
+  }, [todo])
+
+  useEffect(() => {
+    if(showDone) {
+      setTempTodo(todo);
+    }
+    if(!showDone) {
+      setTempTodo(todo.filter(e => !e.done));
+    }
+  },[showDone])
 
   useEffect(() => {
     let newCount = 0;
@@ -21,15 +36,13 @@ export default function App() {
     setCount(newCount);
   }, [todo])
 
-
   return (
-    <div className="App">
-      <Container>
-        <Navigation />
-        <Add todo={todo} setTodo={setTodo} />
-        <Info setShowDone={setShowDone} showDone={showDone} count={count} />
-        <TodoContainer todo={todo} showDone={showDone} setTodo={setTodo} />
-      </Container>
-    </div>
-  );
+    <Container>
+      <Navigation />
+      <Add todo={todo} setTodo={setTodo} />
+      <Info setShowDone={setShowDone} showDone={showDone} count={count} tempTodo={tempTodo} setTempTodo={setTempTodo} todo={todo} />
+      <TodoContainer todo={todo} showDone={showDone} setTodo={setTodo} tempTodo={tempTodo} />
+    </Container>
+  )
 }
+export default App;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from 'styled-components';
 
+const regularColor = "rgba(112, 112, 112, 255)"
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -13,8 +14,8 @@ const Input = styled.input`
   flex: 1;
   border: none;
   font-size: 24px;
-  color: rgba(112, 112, 112, 255);
-  border-bottom: 2px solid rgba(112, 112, 112, 255);
+  color: ${regularColor};
+  border-bottom: 2px solid ${regularColor};
   background: none;
   height: 40px;
   box-sizing: border-box;
@@ -28,8 +29,8 @@ const Input = styled.input`
 const Button = styled.button`
   background-color: white;
   padding: 6.5px 20px;
-  border: 2px solid rgba(112, 112, 112, 255);
-  color: rgba(112, 112, 112, 255);
+  border: 2px solid ${regularColor};
+  color: ${regularColor};
   font-size: 20px;
   cursor: pointer;
 `

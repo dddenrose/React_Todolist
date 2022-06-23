@@ -2,10 +2,11 @@ import React from "react";
 import styled from 'styled-components';
 
 const regularSize = "24px";
+const regularColor = "rgba(112, 112, 112, 255)"
 const Fn = styled.div`
   font-size: ${regularSize};
   display: none;
-  border-bottom: 1px solid rgba(112, 112, 112, 255);
+  border-bottom: 1px solid ${regularColor};
   margin-right: 40px;
   font-weight: bold;
   cursor: pointer;
@@ -24,7 +25,7 @@ font-size: ${regularSize};
 
 const Time = styled.div`
 font-size: ${regularSize};
-  color: rgba(112, 112, 112, 255);
+  color: ${regularColor};
   font-weight: bold;
 `;
 

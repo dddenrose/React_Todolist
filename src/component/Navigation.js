@@ -1,19 +1,19 @@
 import styled from 'styled-components';
 
+
 const Container = styled.div`
   margin: 30px 0 60px 0;
-  // color: rgba(112, 112, 112, 255);
 `
 
 const Title = styled.div`
-  font-size: 140px;
-  font-weight: 100;
+  font-size: 100px;
+  font-weight: 300;
   letter-spacing: 3px;
   margin-bottom: 20px
 `
 const Info = styled.h3`
-  font-size: 40px;
-  font-weight: 100;
+  font-size: 30px;
+  font-weight: 500;
   letter-spacing: 1px;
 `
 
