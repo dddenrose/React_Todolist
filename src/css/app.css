@@ -2,3 +2,9 @@
   margin: 0;
   padding: 0;
 }
+
+.App {
+  color: rgba(112, 112, 112, 255);
+  height: 100vh;
+  background-color: rgba(241,237,237,255);
+}

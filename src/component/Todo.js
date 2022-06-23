@@ -1,33 +1,44 @@
 import React from "react";
 import styled from 'styled-components';
 
+const regularSize = "24px";
 const Fn = styled.div`
+  font-size: ${regularSize};
   display: none;
   border-bottom: 1px solid rgba(112, 112, 112, 255);
-  margin-right: 10px;
+  margin-right: 40px;
+  font-weight: bold;
+  cursor: pointer;
+  &:last-child {
+    margin-right:0;
+  }
 `;
 
 const Title = styled.div`
+font-size: ${regularSize};
   flex: 1;
   text-align: left;
   text-decoration: ${props => !props.e.done ? "none" : "line-through"};
+  letter-spacing: 1px;
 `;
 
 const Time = styled.div`
-  color: black;
+font-size: ${regularSize};
+  color: rgba(112, 112, 112, 255);
+  font-weight: bold;
 `;
 
 const Container = styled.div`
   display: flex;
   align-items: center;
   width: 80vw;
-  height: 30px;
-  margin-bottom: 10px;
+  height: 60px;
+  margin-bottom: 20px;
   padding: 5px 20px;
   box-sizing: border-box;
-
+  transition: all .3s ease-in;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.2)
+    background-color: rgba(0, 0, 0, 0.1)
   }
   &:hover ${Time} {
     display: none;
@@ -39,7 +50,22 @@ const Container = styled.div`
 
 const Todo = ({ e, setTodo, index, todo }) => {
   const time = new Date()
-  const nowTime = `${time.getFullYear()}/${time.getMonth() + 1}/${time.getDate()} ${time.getHours()}:${time.getMinutes()}`
+  let year = time.getFullYear();
+  let month = time.getMonth() + 1;
+  let date = time.getDate();
+  let hour = time.getHours();
+  let min = time.getMinutes();
+  if (month < 10) {
+    month = "0" + month;
+  }
+  if (hour < 10) {
+    hour = "0" + hour;
+  }
+  if (min < 10) {
+    min = "0" + min;
+  }
+  let nowTime = `${year}/${month}/${date} ${hour}:${min}`
+
   const done = () => {
     let newTodo = JSON.parse(JSON.stringify(todo));
     newTodo[index].done = !newTodo[index].done;
@@ -60,7 +86,7 @@ const Todo = ({ e, setTodo, index, todo }) => {
         <Time className="time">
           {e.done && <div className="time">完成時間:{e.time}</div>}
         </Time>
-        <Fn onClick={done}>Mark as done</Fn>
+        <Fn onClick={done}>{!e.done ? `Mark as done` : `Mark as todo`}</Fn>
         <Fn onClick={deleteTodo}>Delete</Fn>
       </Container>
     </div>
@@ -68,38 +94,3 @@ const Todo = ({ e, setTodo, index, todo }) => {
 };
 
 export default Todo;
-
-
-// import React from "react";
-// import StyledTodo from "../style_component/styledTodo"
-
-// const Todo = ({ e, setTodo, index, todo }) => {
-//   const time = new Date()
-//   const nowTime = `${time.getFullYear()}/${time.getMonth() + 1}/${time.getDate()} ${time.getHours()}:${time.getMinutes()}`
-
-//   const done = () => {
-//     let newTodo = JSON.parse(JSON.stringify(todo));
-//     newTodo[index].done = !newTodo[index].done;
-//     newTodo[index].time = nowTime;
-//     setTodo(newTodo);
-//   };
-
-//   const deleteTodo = () => {
-//     let newTodo = JSON.parse(JSON.stringify(todo));
-//     newTodo.splice(index, 1);
-//     setTodo(newTodo);
-//   }
-
-//   return (
-//     <div>
-//       <div className="todo">
-//         <div className="title" style={e.done ? {color: "red"} : {color: "black"}}>{e.title}</div>
-//         {e.done && <div className="time">完成時間:{e.time}</div>}
-//       </div>
-//       <button onClick={done}>Mark as done</button>
-//       <button onClick={deleteTodo}>Delete</button>
-//     </div>
-//   );
-// };
-
-// export default Todo;

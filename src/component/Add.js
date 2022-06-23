@@ -12,35 +12,51 @@ const Container = styled.div`
 const Input = styled.input`
   flex: 1;
   border: none;
-  border-bottom: 1px solid black;
+  font-size: 24px;
+  color: rgba(112, 112, 112, 255);
+  border-bottom: 2px solid rgba(112, 112, 112, 255);
   background: none;
-  padding-bottom: 8px;
+  height: 40px;
+  box-sizing: border-box;
+  padding: 0px 5px;
+  &::placeholder {
+    font-size: 24px;
+    color: rgba(190,189,189,255);
+  }
 `
 
 const Button = styled.button`
   background-color: white;
-  padding: 3px 10px;
-  border: 1px solid black;
+  padding: 6.5px 20px;
+  border: 2px solid rgba(112, 112, 112, 255);
+  color: rgba(112, 112, 112, 255);
+  font-size: 20px;
+  cursor: pointer;
 `
 
-
-
 const Add = ({ todo, setTodo }) => {
-  const [item, setItem] = useState(null);
+  const [item, setItem] = useState({
+    done: false,
+    title: "",
+    time: ""
+  });
 
   const inputHandler = (title) => {
-    let newItem = {
-      done: false,
-      title: title,
-      time: ""
-    };
-    setItem(newItem);
+    let newObj = JSON.parse(JSON.stringify(item))
+    newObj.title = title;
+    setItem(newObj);
   };
 
   const add = () => {
-    let newTodo = todo.concat(item);
-    setTodo(newTodo);
-    // setItem(null);
+    if (item.title !== "") {
+      let newTodo = todo.concat(item);
+      setTodo(newTodo);
+      setItem({
+        done: false,
+        title: "",
+        time: ""
+      })
+    }
   };
 
   return (
@@ -51,7 +67,7 @@ const Add = ({ todo, setTodo }) => {
         onChange={(e) => {
           inputHandler(e.target.value);
         }}
-        // value={item.title}
+        value={item.title}
       />
       <Button onClick={add}>Add</Button>
     </Container>
