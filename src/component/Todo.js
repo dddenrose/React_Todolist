@@ -19,7 +19,7 @@ const Title = styled.div`
 font-size: ${regularSize};
   flex: 1;
   text-align: left;
-  text-decoration: ${props => !props.e.done ? "none" : "line-through"};
+  text-decoration: ${props => !props.e.time ? "none" : "line-through"};
   letter-spacing: 1px;
 `;
 
@@ -68,10 +68,15 @@ const Todo = ({ e, setTodo, index, todo }) => {
   let nowTime = `${year}/${month}/${date} ${hour}:${min}`
 
   const done = () => {
-    let newTodo = JSON.parse(JSON.stringify(todo));
-    newTodo[index].done = !newTodo[index].done;
-    newTodo[index].time = nowTime;
-    setTodo(newTodo);
+    if (e.time) {
+      let newTodo = [...todo];
+      newTodo[index].time = null;
+      setTodo(newTodo);
+    } else {
+      let newTodo = [...todo];
+      newTodo[index].time = nowTime;
+      setTodo(newTodo)
+    }
   };
 
   const deleteTodo = () => {
@@ -84,10 +89,10 @@ const Todo = ({ e, setTodo, index, todo }) => {
     <div>
       <Container>
         <Title e={e}>{e.title}</Title>
-        <Time className="time">
-          {e.done && <div className="time">完成時間:{e.time}</div>}
+        <Time>
+          {e.time && <div>完成時間:{e.time}</div>}
         </Time>
-        <Fn onClick={done}>{!e.done ? `Mark as done` : `Mark as todo`}</Fn>
+        <Fn onClick={done}>{e.time ? `Mark as todo` : `Mark as done`}</Fn>
         <Fn onClick={deleteTodo}>Delete</Fn>
       </Container>
     </div>

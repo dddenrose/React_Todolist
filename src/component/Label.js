@@ -1,6 +1,5 @@
 import React from "react";
 import styled from 'styled-components';
-// import Todo from "./Todo";
 
 const regularColor = "rgba(112, 112, 112, 255)"
 const Input = styled.input`
@@ -66,25 +65,10 @@ const Container = styled.label`
 `
 
 
-const Label = ({ showDone, setShowDone, tempTodo, setTempTodo, todo }) => {
-  const show = () => {
-    setShowDone(!showDone);
-    // let notYet = todo.map((e) => {
-    //   if(!e.done) {
-    //     return e;
-    //   }
-    // })
-    // let all = todo;
-    // if(showDone) {
-    //   setTempTodo(all);
-    // } else {
-    //   setTempTodo(notYet);
-    // }
-  };
-
+const Label = ({ showDone, setShowDone}) => {
   return (
     <Container>Show done items
-      <Input type="checkbox" checked={showDone} onChange={show}/>
+      <Input type="checkbox" checked={showDone} onChange={() => setShowDone(!showDone)}/>
       <Span></Span>
     </Container>
   );

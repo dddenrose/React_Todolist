@@ -37,30 +37,22 @@ const Button = styled.button`
 
 const Add = ({ todo, setTodo }) => {
   const [item, setItem] = useState({
-    done: false,
     title: "",
-    time: ""
+    time: null
   });
 
-  const inputHandler = (title) => {
-    let newObj = JSON.parse(JSON.stringify(item))
-    newObj.title = title;
-    setItem(newObj);
+  const changeInput = (title) => {
+    let newObj = {...item, title};
+    setItem(newObj)
   };
 
-  // const inputHandler = (title) => {
-  //   let newObj = {}
-  //   setItem(newObj);
-  // };
-
   const add = () => {
-    if (item.title !== "") {
-      let newTodo = todo.concat(item);
+    if (item.title) {
+      let newTodo = [...todo, item];
       setTodo(newTodo);
       setItem({
-        done: false,
         title: "",
-        time: ""
+        time: null
       })
     }
   };
@@ -71,7 +63,7 @@ const Add = ({ todo, setTodo }) => {
         type="text"
         placeholder="Add your task here..."
         onChange={(e) => {
-          inputHandler(e.target.value);
+          changeInput(e.target.value);
         }}
         value={item.title}
       />
