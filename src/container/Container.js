@@ -10,7 +10,8 @@ const Container = styled.div`
   font-family: sans-serif;
   text-align: center;
   color: rgba(112, 112, 112, 255);
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   background-color: rgba(241,237,237,255);
 `;
 

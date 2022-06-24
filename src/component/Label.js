@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from 'styled-components';
-import Todo from "./Todo";
+// import Todo from "./Todo";
 
 const regularColor = "rgba(112, 112, 112, 255)"
 const Input = styled.input`

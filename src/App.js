@@ -7,24 +7,24 @@ import Container from "./container/Container";
 
 const App = () => {
   const [todo, setTodo] = useState([]);
-  const [tempTodo, setTempTodo] = useState([]);
+  // const [tempTodo, setTempTodo] = useState([]);
   const [showDone, setShowDone] = useState(false);
   const [count, setCount] = useState(null);
 
-  useEffect(() => {
-    if (todo) {
-      setTempTodo(todo.filter(e => !e.done));
-    }
-  }, [todo])
+  // useEffect(() => {
+  //   if (todo) {
+  //     setTempTodo(todo.filter(e => !e.done));
+  //   }
+  // }, [todo])
 
-  useEffect(() => {
-    if(showDone) {
-      setTempTodo(todo);
-    }
-    if(!showDone) {
-      setTempTodo(todo.filter(e => !e.done));
-    }
-  },[showDone])
+  // useEffect(() => {
+  //   if(showDone) {
+  //     setTempTodo(todo);
+  //   }
+  //   if(!showDone) {
+  //     setTempTodo(todo.filter(e => !e.done));
+  //   }
+  // },[showDone, todo])
 
   useEffect(() => {
     let newCount = 0;
@@ -40,8 +40,8 @@ const App = () => {
     <Container>
       <Navigation />
       <Add todo={todo} setTodo={setTodo} />
-      <Info setShowDone={setShowDone} showDone={showDone} count={count} tempTodo={tempTodo} setTempTodo={setTempTodo} todo={todo} />
-      <TodoContainer todo={todo} showDone={showDone} setTodo={setTodo} tempTodo={tempTodo} />
+      <Info setShowDone={setShowDone} showDone={showDone} count={count} todo={todo} />
+      <TodoContainer todo={todo} showDone={showDone} setTodo={setTodo}/>
     </Container>
   )
 }

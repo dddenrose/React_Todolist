@@ -48,6 +48,11 @@ const Add = ({ todo, setTodo }) => {
     setItem(newObj);
   };
 
+  // const inputHandler = (title) => {
+  //   let newObj = {}
+  //   setItem(newObj);
+  // };
+
   const add = () => {
     if (item.title !== "") {
       let newTodo = todo.concat(item);
