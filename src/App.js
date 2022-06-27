@@ -7,29 +7,13 @@ import Container from "./container/Container";
 
 const App = () => {
   const [todo, setTodo] = useState([]);
-  // const [tempTodo, setTempTodo] = useState([]);
   const [showDone, setShowDone] = useState(false);
   const [count, setCount] = useState(null);
-
-  // useEffect(() => {
-  //   if (todo) {
-  //     setTempTodo(todo.filter(e => !e.done));
-  //   }
-  // }, [todo])
-
-  // useEffect(() => {
-  //   if(showDone) {
-  //     setTempTodo(todo);
-  //   }
-  //   if(!showDone) {
-  //     setTempTodo(todo.filter(e => !e.done));
-  //   }
-  // },[showDone, todo])
 
   useEffect(() => {
     let newCount = 0;
     todo.forEach((e) => {
-      if (!e.done) {
+      if (!e.time) {
         newCount++;
       }
     })

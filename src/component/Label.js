@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 const regularColor = "rgba(112, 112, 112, 255)"
 const Input = styled.input`
-position: absolute;
-opacity: 0;
-cursor: pointer;
-height: 0;
-width: 0;
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
 `
 
 const Span = styled.span`
@@ -65,10 +65,10 @@ const Container = styled.label`
 `
 
 
-const Label = ({ showDone, setShowDone}) => {
+const Label = ({ showDone, setShowDone }) => {
   return (
     <Container>Show done items
-      <Input type="checkbox" checked={showDone} onChange={() => setShowDone(!showDone)}/>
+      <Input type="checkbox" checked={showDone} onChange={() => setShowDone(!showDone)} />
       <Span></Span>
     </Container>
   );

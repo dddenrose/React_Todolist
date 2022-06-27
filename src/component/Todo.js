@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const regularSize = "24px";
 const regularColor = "rgba(112, 112, 112, 255)"
-const Fn = styled.div`
+const Button = styled.div`
   font-size: ${regularSize};
   display: none;
   border-bottom: 1px solid ${regularColor};
@@ -16,7 +16,7 @@ const Fn = styled.div`
 `;
 
 const Title = styled.div`
-font-size: ${regularSize};
+  font-size: ${regularSize};
   flex: 1;
   text-align: left;
   text-decoration: ${props => !props.e.time ? "none" : "line-through"};
@@ -24,7 +24,7 @@ font-size: ${regularSize};
 `;
 
 const Time = styled.div`
-font-size: ${regularSize};
+  font-size: ${regularSize};
   color: ${regularColor};
   font-weight: bold;
 `;
@@ -44,12 +44,12 @@ const Container = styled.div`
   &:hover ${Time} {
     display: none;
   }
-  &:hover ${Fn} {
+  &:hover ${Button} {
     display: flex;
   }
 `;
 
-const Todo = ({ e, setTodo, index, todo }) => {
+const Todo = ({ e, setTodo, todo }) => {
   const time = new Date()
   let year = time.getFullYear();
   let month = time.getMonth() + 1;
@@ -68,20 +68,28 @@ const Todo = ({ e, setTodo, index, todo }) => {
   let nowTime = `${year}/${month}/${date} ${hour}:${min}`
 
   const done = () => {
-    if (e.time) {
-      let newTodo = [...todo];
-      newTodo[index].time = null;
-      setTodo(newTodo);
-    } else {
-      let newTodo = [...todo];
-      newTodo[index].time = nowTime;
-      setTodo(newTodo)
-    }
+    let newTodo = [...todo];
+    newTodo.map((element) => {
+      if (element.title === e.title) {
+        if(element.time === null) {
+          element.time = nowTime;
+        } else {
+          element.time = null;
+        }
+      }
+    })
+    setTodo(newTodo);
   };
 
   const deleteTodo = () => {
-    let newTodo = JSON.parse(JSON.stringify(todo));
-    newTodo.splice(index, 1);
+    let newTodo = [...todo];
+    let idx = null;
+    newTodo.map((element, index) => {
+      if(element.title === e.title) {
+        idx = index;
+      }
+    })
+    newTodo.splice(idx, 1);
     setTodo(newTodo);
   }
 
@@ -92,8 +100,8 @@ const Todo = ({ e, setTodo, index, todo }) => {
         <Time>
           {e.time && <div>完成時間:{e.time}</div>}
         </Time>
-        <Fn onClick={done}>{e.time ? `Mark as todo` : `Mark as done`}</Fn>
-        <Fn onClick={deleteTodo}>Delete</Fn>
+        <Button onClick={done}>{e.time ? `Mark as todo` : `Mark as done`}</Button>
+        <Button onClick={deleteTodo}>Delete</Button>
       </Container>
     </div>
   );

@@ -9,8 +9,8 @@ const TodoContainer = ({ todo, setTodo, showDone }) => {
         } else {
             temp = todo.filter((e) => !e.time);
         }
-        return temp.map((e, index) => {
-            return <Todo e={e} key={e.title} setTodo={setTodo} index={index} todo={todo} />
+        return temp.map((e) => {
+            return <Todo e={e} key={e.title} setTodo={setTodo} todo={todo} />
         })
     };
 
