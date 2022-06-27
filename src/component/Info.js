@@ -17,10 +17,10 @@ font-size: ${regularSize};
   text-align: left;
 `
 
-const Info = ({ showDone, setShowDone, count }) => {
+const Info = ({ showDone, setShowDone, todo }) => {
   return (
     <Container>
-      <Title>{count} item(s)</Title>
+      <Title>{todo.length} item(s)</Title>
       <Label showDone={showDone} setShowDone={setShowDone}></Label>
     </Container>
   );

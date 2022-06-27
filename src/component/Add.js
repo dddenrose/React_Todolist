@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from 'styled-components';
 
 const regularColor = "rgba(112, 112, 112, 255)"
@@ -35,37 +35,16 @@ const Button = styled.button`
   cursor: pointer;
 `
 
-const Add = ({ todo, setTodo }) => {
-  const [item, setItem] = useState({
-    title: "",
-    time: null
-  });
-
-  const changeInput = (title) => {
-    let newObj = {...item, title};
-    setItem(newObj)
-  };
-
-  const add = () => {
-    if (item.title) {
-      let newTodo = [...todo, item];
-      setTodo(newTodo);
-      setItem({
-        title: "",
-        time: null
-      })
-    }
-  };
-
+const Add = ({ setTitle, title, add }) => {
   return (
     <Container>
       <Input
         type="text"
         placeholder="Add your task here..."
-        onChange={(e) => {
-          changeInput(e.target.value);
+        onChange={(title) => {
+          setTitle(title.target.value);
         }}
-        value={item.title}
+        value={title}
       />
       <Button onClick={add}>Add</Button>
     </Container>
