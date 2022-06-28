@@ -47,20 +47,14 @@ const App = () => {
     };
   };
 
-  const renderTodo = () => {
-    let temp = null;
-    showDone ? temp = todo : temp = todo.filter((e) => !e.time);
-    return temp.map((data) => {
-      return <Todo data={data} key={data.id} deleteTodo={deleteTodo} done={done} />
-    })
-  };
+  const renderTodo = showDone ? todo : todo.filter((e) => !e.time);
 
   return (
     <Container>
       <Navigation />
       <Add todo={todo} setTodo={setTodo} title={title} id={id} add={add} setTitle={setTitle} />
-      <Info setShowDone={setShowDone} showDone={showDone} todo={todo} />
-      {renderTodo()}
+      <Info setShowDone={setShowDone} showDone={showDone} todo={renderTodo} />
+      <Todo data={renderTodo} deleteTodo={deleteTodo} done={done} />
     </Container>
   )
 }

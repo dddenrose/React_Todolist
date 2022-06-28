@@ -52,14 +52,14 @@ const Container = styled.div`
 const Todo = ({ data, done, deleteTodo }) => {
   return (
     <div>
-      <Container>
+      {data.map((data) => (<Container key={data.id}>
         <Title data={data}>{data.title}</Title>
         <Time>
           {data.time && <div>完成時間:{data.time}</div>}
         </Time>
         <Button onClick={() => done(data)}>{data.time ? `Mark as todo` : `Mark as done`}</Button>
         <Button onClick={() => deleteTodo(data)}>Delete</Button>
-      </Container>
+      </Container>))}
     </div>
   );
 };
